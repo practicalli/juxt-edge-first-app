@@ -1,0 +1,20 @@
+{:ig/system
+
+ {
+  ;; component resources
+  :practicalli.study-group-api.core/hello-language nil
+  :practicalli.study-group-api.core/string         "Hello, study-group-api!"
+
+  ;; Integrant configuration for yada web listener
+  :edge.yada.ig/listener
+  {:handler #ig/ref :edge.bidi.ig/vhost
+   :port    3636}
+
+  ;; Integrant
+  :edge.bidi.ig/vhost
+  [["http://localhost:3636"
+
+    ;; routes
+    [""
+     [["/" #ig/ref :practicalli.study-group-api.core/string]
+      ["/hello" #ig/ref :practicalli.study-group-api.core/hello-language]]]]]}}
